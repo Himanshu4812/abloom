@@ -5,7 +5,7 @@ import { Container } from "@/src/components/ui/Container";
 
 export function PlansSection() {
   return (
-    <section id="plans" className="py-20 lg:py-32 bg-background">
+    <section id="masterplan" className="py-20 lg:py-32 bg-background">
       <Container>
         <div className="max-w-3xl mx-auto">
           {/* Section Header */}

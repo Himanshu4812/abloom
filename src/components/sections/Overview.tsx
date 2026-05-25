@@ -6,39 +6,32 @@ import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '@/lib/utils';
 import { abloom } from '@/src/data/abloom';
 
-const extractTagline = (text: string): string => {
-  const match = text.match(/^([^,.;]+)[,.;]/);
-  return match ? match[1].trim() : text.slice(0, 45).trim();
-};
-
-const extractLine = (text: string): string => {
-  const match = text.match(/^([^,.;]+)[,.;]\s*(.*)/);
-  return match && match[2] ? match[2].trim() : text;
-};
-
-const deriveTitle = (text: string): string => {
-  return text
-    .split(/[\s,…]+/)
-    .filter((w) => w.length > 3)
-    .slice(0, 2)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
-};
-
-const galleryImages = [
-  '/images/gallery-1.webp',
-  '/images/gallery-2.webp',
-  '/images/gallery-3.webp',
+const chapters = [
+  {
+    id: 'overview-sanctuary',
+    src: '/images/gallery-1.webp',
+    title: 'Sanctuary',
+    tagline: 'Natural Living',
+    line: 'Lush greenery and tranquil surroundings designed for peace.',
+    volume: '01',
+  },
+  {
+    id: 'overview-retreat',
+    src: '/images/gallery-2.webp',
+    title: 'Retreat',
+    tagline: 'Private Solitude',
+    line: 'Serene spaces crafted for quiet reflection and calm.',
+    volume: '02',
+  },
+  {
+    id: 'overview-oasis',
+    src: '/images/gallery-3.webp',
+    title: 'Oasis',
+    tagline: 'Modern Comfort',
+    line: 'Thoughtfully planned community with premium amenities.',
+    volume: '03',
+  },
 ];
-
-const chapters = abloom.overview.paragraphs.map((paragraph, idx) => ({
-  id: `overview-chapter-${idx + 1}`,
-  src: galleryImages[idx] || '/images/gallery-1.webp',
-  title: deriveTitle(paragraph) || `Volume ${String(idx + 1).padStart(2, '0')}`,
-  tagline: extractTagline(paragraph),
-  line: extractLine(paragraph),
-  volume: String(idx + 1).padStart(2, '0'),
-}));
 
 const projectStats = [
   { label: 'Area', value: '3 Acres' },
@@ -85,8 +78,8 @@ export const Overview = () => {
         Abloom
       </div>
 
-      <div className="container mx-auto px-6 md:px-16 lg:px-20 relative z-10 max-w-[1600px] py-24 md:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="container mx-auto px-6 md:px-16 lg:px-20 relative z-10 max-w-[1600px] py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Content */}
           <div className="flex flex-col">
             <motion.div
@@ -108,7 +101,7 @@ export const Overview = () => {
 
               <motion.h2
                 variants={fadeUp}
-                className="text-5xl md:text-6xl font-serif font-light leading-[1.06] tracking-tight mb-10"
+                className="text-4xl md:text-6xl font-serif font-light leading-[1.06] tracking-tight mb-10"
               >
                 {abloom.overview.title}
                 <span className="font-serif italic font-light text-primary/85">
@@ -118,16 +111,11 @@ export const Overview = () => {
 
               <motion.div
                 variants={fadeUp}
-                className="pl-8 border-l border-primary/15 mb-12 space-y-4"
+                className="pl-8 border-l border-primary/15 mb-12"
               >
-                {abloom.overview.paragraphs.map((paragraph, i) => (
-                  <p
-                    key={i}
-                    className="text-lg font-sans font-light text-muted-foreground max-w-lg leading-[1.75]"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
+                <p className="text-lg font-sans font-light text-muted-foreground max-w-lg leading-[1.75]">
+                  {abloom.overview.paragraphs[0]}
+                </p>
               </motion.div>
 
               <motion.button
@@ -186,7 +174,7 @@ export const Overview = () => {
           {/* Right Column - Card Carousel */}
           <div className="flex flex-col items-center">
             <motion.div
-              className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[370px] h-[370px] sm:h-[440px] md:h-[480px] cursor-pointer"
+              className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[370px] h-[300px] sm:h-[400px] md:h-[480px] cursor-pointer"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-80px' }}
@@ -311,7 +299,7 @@ export const Overview = () => {
             </motion.div>
 
             {cards.length > 1 && (
-              <div className="flex items-center gap-6 mt-10 z-30">
+              <div className="flex items-center gap-6 mt-6 z-30">
                 <button
                   type="button"
                   onClick={moveCardToFront}

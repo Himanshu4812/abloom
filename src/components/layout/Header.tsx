@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "OVERVIEW", href: "#overview" },
   { label: "GALLERY", href: "#gallery" },
-  { label: "PLANS", href: "#plans" },
+  { label: "MASTERPLAN", href: "#masterplan" },
   { label: "CONTACT", href: "#contact" },
 ];
 
@@ -17,7 +18,7 @@ export function Header() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 3500);
+    const timer = setTimeout(() => setIsVisible(true), 4000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -30,34 +31,33 @@ export function Header() {
   }, []);
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-      } ${
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-sm py-4"
           : "bg-transparent py-6"
-      }`}
+      } ${!isVisible ? "pointer-events-none" : ""}`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
           <Link
             href="/"
-            className={`font-serif text-xl lg:text-2xl font-medium tracking-wide transition-colors duration-300 ${
+            className={`font-display font-medium text-xl lg:text-2xl tracking-wide transition-colors duration-300 ${
               isScrolled ? "text-foreground" : "text-white"
             }`}
           >
-            Abloom
+            ABLOOM
           </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-10 lg:gap-12">
+          <ul className="hidden md:flex items-center gap-12 lg:gap-14">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`text-xs font-medium tracking-[0.2em] transition-colors duration-300 hover:text-primary ${
+                  className={`text-[12px] font-medium tracking-[0.15em] uppercase transition-colors duration-300 hover:text-primary ${
                     isScrolled
                       ? "text-muted-foreground"
                       : "text-white/80"
@@ -69,7 +69,6 @@ export function Header() {
             ))}
           </ul>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden p-2 transition-colors ${
@@ -81,7 +80,6 @@ export function Header() {
           </button>
         </nav>
 
-        {/* Mobile Navigation */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ${
             isMobileMenuOpen ? "max-h-64 pt-6" : "max-h-0"
@@ -93,7 +91,9 @@ export function Header() {
                 <Link
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-xs font-medium tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className={`block text-[12px] font-medium tracking-[0.15em] uppercase transition-colors duration-200 ${
+                    isScrolled ? "text-muted-foreground hover:text-foreground" : "text-white/80 hover:text-white"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -101,7 +101,9 @@ export function Header() {
             ))}
           </ul>
         </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-white/20 via-white/30 to-transparent" />
       </div>
-    </header>
+    </motion.header>
   );
 }

@@ -72,18 +72,18 @@ export function HeroScrollSequence() {
           <source src="/videos/Hero-section.webm" type="video/webm" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/40" />
-        <div className="relative z-10 w-full h-full max-w-[1400px] mx-auto px-6 lg:px-12 flex items-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full">
-            <div>
-              <h1 className="font-serif text-6xl sm:text-7xl md:text-9xl font-light text-white tracking-wide leading-none">
-                ABLOOM
-              </h1>
-            </div>
-            <div className="text-white lg:pt-24">
-              <p className="text-xs sm:text-sm font-medium tracking-[0.3em] text-white/80 uppercase mb-4 sm:mb-6">
+        <div className="relative z-10 w-full h-full max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 w-full h-full items-center">
+              <div className="lg:col-span-7 lg:self-end lg:pb-[24vh]">
+                <h1 className="font-serif font-light text-white tracking-[-0.03em] whitespace-nowrap" style={{ fontSize: 'clamp(3.5rem, 12vw, 13.5rem)', lineHeight: 0.85 }}>
+                  ABLOOM
+                </h1>
+              </div>
+              <div className="text-white lg:col-span-4 lg:col-start-9 lg:justify-self-end lg:self-end lg:pb-[26vh] max-w-[400px]">
+              <p className="text-[22px] font-medium tracking-[0.25em] text-white/90 uppercase mb-4 sm:mb-6">
                 AWESOMELY BLOSSOM WITH NATURE
               </p>
-              <p className="text-sm sm:text-base md:text-lg font-light text-white/80 leading-relaxed max-w-md">
+              <p className="text-[1.15rem] font-light text-white/90 leading-[1.9] max-w-[420px]">
                 Discover a place where lush landscapes, quiet luxury, and timeless living come together in perfect harmony.
               </p>
             </div>
@@ -113,9 +113,10 @@ export function HeroScrollSequence() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />
 
       <div className="relative z-10 w-full h-full max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center h-full">
           <motion.h1
-            className="font-serif text-6xl sm:text-7xl md:text-9xl font-light text-white tracking-wide leading-none"
+            className="font-serif font-light text-white tracking-[-0.03em] lg:col-span-7 lg:self-end lg:pb-[24vh] whitespace-nowrap"
+            style={{ fontSize: 'clamp(3.5rem, 12vw, 13.5rem)', lineHeight: 0.85 }}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -132,38 +133,29 @@ export function HeroScrollSequence() {
           </motion.h1>
 
           <motion.div
-            className="text-white lg:pt-24"
+            className="text-white lg:col-span-4 lg:col-start-9 lg:justify-self-end lg:self-end lg:pb-[26vh] max-w-[400px]"
             variants={rightContentVariants}
             initial="hidden"
             animate="visible"
           >
-            <p className="text-xs sm:text-sm font-medium tracking-[0.3em] text-white/80 uppercase mb-4 sm:mb-6">
+            <p className="text-[22px] font-medium tracking-[0.25em] text-white/90 uppercase mb-4 sm:mb-6">
               AWESOMELY BLOSSOM WITH NATURE
             </p>
-            <p className="text-sm sm:text-base md:text-lg font-light text-white/80 leading-relaxed max-w-md">
+            <p className="text-[1.15rem] font-light text-white/90 leading-[1.9] max-w-[420px]">
               Discover a place where lush landscapes, quiet luxury, and timeless living come together in perfect harmony.
             </p>
           </motion.div>
         </div>
       </div>
 
-      <motion.div
-        className="absolute bottom-8 right-8 lg:right-12 z-10"
+      <motion.span
+        className="absolute bottom-8 right-8 lg:right-12 z-10 text-[10px] font-medium tracking-[0.2em] text-white/60"
         variants={scrollVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-medium tracking-[0.2em] text-white/60">SCROLL</span>
-          <motion.div
-            animate={{ x: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="text-white/40 text-xs"
-          >
-            &rarr;
-          </motion.div>
-        </div>
-      </motion.div>
+        SCROLL
+      </motion.span>
     </div>
   );
 }
