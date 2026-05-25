@@ -6,12 +6,12 @@ export const abloom: AbloomProject = {
   heroDescription:
     "Discover a sanctuary where luxury meets nature. Abloom offers an exclusive community of thoughtfully designed plots, nestled in the serene landscapes near Nashik, where every day begins with sunshine and ends with moonshine.",
   overview: {
-    title: "Overview",
+    title: "",
     subtitle: "Abloom - Awesomely blossom with nature",
     paragraphs: [
-      "A life cradled by nature, surrounded by lush greenery, where days begin with golden sunshine and end with peaceful moonshine. An easy yet elegant lifestyle that is both luxurious and spiritual at the same time.",
-      "Abloom offers an unparalleled blend of greenery, luxury, tranquility, and spirituality, located approximately 10 kilometers from the vibrant city of Nashik.",
-      "Revive… Rejuvenate… Rebloom. Build your dream home in a clean, green, and serene ambiance. This natural luxury with a touch of spirituality makes Abloom the perfect destination to revive your senses, rejuvenate your soul, and rebloom into the life you deserve.",
+      "Abloom offers a luxurious and spiritual lifestyle surrounded by nature and tranquility near Nashik.",
+      "With lush greenery, peaceful surroundings, and modern comfort, it is the perfect place to build your dream home and rejuvenate your soul.",
+      "Experience a thoughtfully planned community featuring ready infrastructure, open spaces, and a balanced blend of luxury with nature.",
     ],
   },
   highlights: {
@@ -37,22 +37,22 @@ export const abloom: AbloomProject = {
     images: [
       {
         id: 1,
-        src: "/images/gallery-1.jpg",
+        src: "/images/gallery-1.webp",
         alt: "Abloom project view 1 - Lush green surroundings",
       },
       {
         id: 2,
-        src: "/images/gallery-2.jpg",
+        src: "/images/gallery-2.webp",
         alt: "Abloom project view 2 - Scenic landscape",
       },
       {
         id: 3,
-        src: "/images/gallery-3.jpg",
+        src: "/images/gallery-3.webp",
         alt: "Abloom project view 3 - Natural beauty",
       },
       {
         id: 4,
-        src: "/images/gallery-4.jpg",
+        src: "/images/gallery-4.webp",
         alt: "Abloom project view 4 - Serene environment",
       },
     ],
@@ -60,7 +60,7 @@ export const abloom: AbloomProject = {
   plans: {
     title: "Plans",
     subtitle: "Master Plan",
-    mainPlanImage: "/images/master-plan.jpg",
+    mainPlanImage: "/images/master-plan.webp",
     note: "* Click for larger view",
   },
 };

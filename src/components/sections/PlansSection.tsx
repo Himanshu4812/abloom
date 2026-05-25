@@ -20,13 +20,13 @@ export function PlansSection() {
 
           {/* Master Plan Image */}
           <a
-            href="/images/master-plan.jpg"
+            href="/images/master-plan.webp"
             target="_blank"
             rel="noopener noreferrer"
             className="group block relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted cursor-pointer shadow-sm hover:shadow-md transition-shadow duration-300"
           >
             <Image
-              src="/images/master-plan.jpg"
+              src="/images/master-plan.webp"
               alt="Abloom Master Plan"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
