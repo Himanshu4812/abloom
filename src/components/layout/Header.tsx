@@ -14,6 +14,12 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 3500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +32,8 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+      } ${
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-sm py-4"
           : "bg-transparent py-6"
@@ -37,7 +45,7 @@ export function Header() {
           <Link
             href="/"
             className={`font-serif text-xl lg:text-2xl font-medium tracking-wide transition-colors duration-300 ${
-              isScrolled ? "text-foreground" : "text-foreground"
+              isScrolled ? "text-foreground" : "text-white"
             }`}
           >
             Abloom
@@ -52,7 +60,7 @@ export function Header() {
                   className={`text-xs font-medium tracking-[0.2em] transition-colors duration-300 hover:text-primary ${
                     isScrolled
                       ? "text-muted-foreground"
-                      : "text-foreground/80"
+                      : "text-white/80"
                   }`}
                 >
                   {link.label}
@@ -65,7 +73,7 @@ export function Header() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden p-2 transition-colors ${
-              isScrolled ? "text-foreground" : "text-foreground"
+              isScrolled ? "text-foreground" : "text-white"
             }`}
             aria-label="Toggle menu"
           >
