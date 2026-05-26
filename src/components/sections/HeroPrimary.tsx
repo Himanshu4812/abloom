@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { LeafSprig, RoundLeaf, GrassBlade } from "./hero-stickers";
 
 const TITLE = "ABLOOM";
 
@@ -29,15 +28,7 @@ const contentVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 2.2 },
-  },
-};
-
-const scrollHintVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { delay: 4, duration: 1 },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 3.3 },
   },
 };
 
@@ -52,9 +43,24 @@ export function HeroPrimary() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  const marqueeImages = [
+    "/images/gallery-1.webp",
+    "/images/gallery-2.webp",
+    "/images/gallery-3.webp",
+    "/images/gallery-4.webp",
+    "/images/hero-bg.webp",
+    "/images/Homepage.jpg",
+    "/images/gallery-1.webp",
+    "/images/gallery-2.webp",
+    "/images/gallery-3.webp",
+    "/images/gallery-4.webp",
+    "/images/hero-bg.webp",
+    "/images/Homepage.jpg",
+  ];
+
   if (prefersReducedMotion) {
     return (
-      <section className="sticky top-0 z-0 w-full bg-background overflow-hidden">
+      <section className="sticky top-0 z-0 w-full bg-mint overflow-hidden">
         <div className="relative min-h-dvh max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col items-center justify-center text-center">
           <span className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground">
             Nature-centric villas
@@ -73,23 +79,15 @@ export function HeroPrimary() {
             where lush landscapes, quiet luxury, and timeless living come
             together in perfect harmony.
           </p>
-          <span className="mt-12 text-[10px] tracking-[0.2em] text-muted-foreground/60">
-            SCROLL
-          </span>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="sticky top-0 z-0 w-full bg-background overflow-hidden">
+    <section className="sticky top-0 z-0 w-full bg-mint overflow-hidden">
       <div className="relative min-h-dvh max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col items-center justify-center text-center">
-        <div className="hidden md:block">
-          <LeafSprig className="absolute top-[18vh] left-[4vw] w-[clamp(50px,5vw,80px)] text-emerald-800/15" />
-          <RoundLeaf className="absolute top-[22vh] right-[6vw] w-[clamp(60px,4.5vw,85px)] text-emerald-700/10" />
-          <GrassBlade className="absolute bottom-[18vh] right-[14vw] w-[clamp(22px,2vw,35px)] text-emerald-800/12" />
-        </div>
-
+        
         <div className="flex flex-col items-center">
           <motion.span
             className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground"
@@ -138,17 +136,42 @@ export function HeroPrimary() {
             together in perfect harmony.
           </motion.p>
 
-          <motion.div
-            className="mt-12 flex items-center justify-center gap-3 text-[10px] tracking-[0.2em] text-muted-foreground/60"
-            variants={scrollHintVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <span>SCROLL</span>
-            <span className="h-px w-10 bg-muted-foreground/20" />
-          </motion.div>
+
         </div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 3.5 }}
+        className="absolute bottom-0 left-0 w-full h-48 md:h-64 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] pointer-events-none"
+      >
+        <motion.div
+          className="flex gap-4"
+          animate={{
+            x: ["0%", "-50%"],
+            transition: {
+              ease: "linear",
+              duration: 30,
+              repeat: Infinity,
+            },
+          }}
+        >
+          {marqueeImages.map((src, index) => (
+            <div
+              key={index}
+              className="relative aspect-[3/4] h-36 md:h-56 flex-shrink-0"
+              style={{ rotate: `${index % 2 === 0 ? -2 : 5}deg` }}
+            >
+              <img
+                src={src}
+                alt=""
+                className="w-full h-full object-cover rounded-2xl shadow-md"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

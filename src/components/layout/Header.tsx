@@ -15,12 +15,6 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 4000);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,14 +26,14 @@ export function Header() {
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 3 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background,box-shadow,padding] duration-500 ${
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-sm py-4"
           : "bg-transparent py-6"
-      } ${!isVisible ? "pointer-events-none" : ""}`}
+      }`}
     >
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         <nav className="flex items-center justify-between">
