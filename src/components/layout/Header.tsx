@@ -45,9 +45,7 @@ export function Header() {
         <nav className="flex items-center justify-between">
           <Link
             href="/"
-            className={`font-display font-medium text-xl lg:text-2xl tracking-wide transition-colors duration-300 ${
-              isScrolled ? "text-foreground" : "text-white"
-            }`}
+            className="font-display font-medium text-xl lg:text-2xl tracking-wide transition-colors duration-300 text-foreground"
           >
             ABLOOM
           </Link>
@@ -57,11 +55,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`text-[12px] font-medium tracking-[0.15em] uppercase transition-colors duration-300 hover:text-primary ${
-                    isScrolled
-                      ? "text-muted-foreground"
-                      : "text-white/80"
-                  }`}
+                  className="text-[12px] font-medium tracking-[0.15em] uppercase transition-colors duration-300 hover:text-primary text-muted-foreground"
                 >
                   {link.label}
                 </Link>
@@ -71,9 +65,7 @@ export function Header() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 transition-colors ${
-              isScrolled ? "text-foreground" : "text-white"
-            }`}
+            className="md:hidden p-2 transition-colors text-foreground"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -91,9 +83,7 @@ export function Header() {
                 <Link
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block text-[12px] font-medium tracking-[0.15em] uppercase transition-colors duration-200 ${
-                    isScrolled ? "text-muted-foreground hover:text-foreground" : "text-white/80 hover:text-white"
-                  }`}
+                  className="block text-[12px] font-medium tracking-[0.15em] uppercase transition-colors duration-200 text-muted-foreground hover:text-foreground"
                 >
                   {link.label}
                 </Link>
@@ -102,7 +92,7 @@ export function Header() {
           </ul>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-white/20 via-white/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
       </div>
     </motion.header>
   );

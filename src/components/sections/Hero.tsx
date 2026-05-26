@@ -1,11 +1,13 @@
 "use client";
 
-import { HeroScrollSequence } from "./HeroScrollSequence";
+import { HeroPrimary } from "./HeroPrimary";
+import { HeroReveal } from "./HeroReveal";
 
 export function Hero() {
   return (
-    <section className="relative w-full">
-      <HeroScrollSequence />
-    </section>
+    <div>
+      <HeroPrimary />
+      <HeroReveal />
+    </div>
   );
 }
